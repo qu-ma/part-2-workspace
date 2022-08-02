@@ -11,6 +11,8 @@ package com.javatunes.thread;
 public class RepeatingPrinterTest {
 
   public static void main(String[] args) {
+    String printerName = "block-lambda";
+
     Thread thd1 = new Thread(new RepeatingPrinter());
     thd1.start();
     
@@ -19,7 +21,7 @@ public class RepeatingPrinterTest {
     //  note: change the sysout to show "block-lambda"
     Runnable printer = () -> {
       while (true) {
-        System.out.println("block-lambda");
+        System.out.println(printerName);
         try {
           Thread.sleep(750);
         } catch (InterruptedException e) {
@@ -30,5 +32,7 @@ public class RepeatingPrinterTest {
     // DONE: create another Thread, passing in the 'printer' reference as its Runnable - then start it
     Thread thd2 = new Thread(printer);
     thd2.start();
+
+    System.out.println("MAIN METHOD Complete");
   }
 }
